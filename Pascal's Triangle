@@ -1,0 +1,29 @@
+O(M*N)
+
+#include <bits/stdc++.h>
+
+vector<vector<long long int>> printPascal(int n) 
+{
+  // Write your code here.
+  vector<vector<long long int>> ans;
+  if(n==1) return {{1}};
+  if(n==2) return {{1},{1,1}};
+  if(n>=3){
+    ans.push_back({1});
+    ans.push_back({1,1});
+    n-=2;
+    while(n--)
+    {
+      vector<long long int>currRow;
+      currRow.push_back(1);
+      auto x=ans[ans.size()-1]; 
+      for(auto i=1;i<x.size();i++)
+      {
+        currRow.push_back(x[i]+x[i-1]);
+      }
+      currRow.push_back(1);
+      ans.push_back(currRow);
+    }
+  }
+  return ans;
+}
