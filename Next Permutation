@@ -1,0 +1,54 @@
+##Brute:
+find all permutations and check next one by linear search
+TC: O(N!*N)
+SC: O(1)+ stack space
+
+##Optimal:
+
+##C++ STL:
+next_permtation(arr.begin(),arr.end());
+
+##own:
+
+#include <bits/stdc++.h> 
+vector<int> nextPermutation(vector<int> &permutation, int n)
+{
+    //  Write your code here.
+    // find breakpoint
+    // traverse from left and check a[i]<a[i+1] i.e to have max matching prefix
+    
+    int ind=-1,i,curr;
+    for(i=n-2;i>=0;i--)
+    {
+        if(permutation[i]<permutation[i+1])
+        {
+            ind=i;
+            break;
+        }
+    }
+    if(ind==-1)
+    {
+        // 5 4 3 2 1
+        reverse(permutation.begin(),permutation.end());
+        return permutation;
+    }
+    
+    // swap ind with lowest value greater than current breakpoint value
+    
+    curr=permutation[ind];
+    for(i=n-1;i>=0;i--)
+    {
+        if(permutation[i]>curr)
+        {
+            swap(permutation[i],permutation[ind]);
+            break;
+        }
+    }
+    
+    // sort the arr after breakpoint i.e reverse it
+    
+    reverse(permutation.begin()+ind+1,permutation.end());
+    return permutation;
+    
+    
+}
