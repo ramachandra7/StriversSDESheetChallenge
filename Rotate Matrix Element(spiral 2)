@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+    // Write your code here
+    int top=0,bottom=n-1,left=0,right=m-1,i,j,x;
+    // same approach as spiral matrix
+    while(top<bottom && left<right)
+    {
+        x=mat[top][left];
+        for(i=left+1;i<=right;i++)
+        {
+            swap(x,mat[top][i]);
+        }
+        top++;a
+        for(i=top;i<=bottom;i++){
+            swap(x,mat[i][right]);
+        }
+        right--;
+
+        for(i=right;i>=left;i--){
+            swap(mat[bottom][i],x);
+        }
+        bottom--;
+        for(i=bottom;i>=top;i--)
+        {
+            swap(mat[i][left],x);
+        }
+        left++;
+        
+        mat[top-1][left-1]=x;
+    }
+
+}
