@@ -1,0 +1,72 @@
+##Brute:
+sort and check adjacent 
+
+TC: O(nlogn) + O(n)
+SC: O(1)
+
+
+##Better :
+With extra space 
+Use map
+
+TC: O(N)
+SC: O(N)
+
+#include <bits/stdc++.h>
+
+int findDuplicate(vector<int> &arr, int n){
+	// Write your code here.
+	unordered_map<int,int>mp;
+	int i;
+	for(i=0;i<n;i++)
+	{
+		if(mp.find(arr[i])!=mp.end())
+		{
+			return arr[i];
+		}
+		else{
+			mp[arr[i]]=1;
+		}
+	}
+}
+
+
+
+##Optimal:
+
+TC: O(N)
+SC: O(1)
+
+
+#include <bits/stdc++.h>
+
+int findDuplicate(vector<int> &arr, int n){
+	// Write your code here.
+	
+	int slow=arr[0],fast=arr[0];
+	
+	// wait till both pointers meet
+	do{
+		
+		slow=arr[slow];
+		fast=arr[arr[fast]];
+		
+		
+	}while(slow!=fast);
+	
+	
+	fast=arr[0];
+	
+	// when they meet again is the point of cycle
+
+	
+	while(slow!=fast){
+		slow=arr[slow];
+		fast=arr[fast];
+	}
+	
+	return slow;
+
+	
+}
+
