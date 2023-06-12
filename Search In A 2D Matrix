@@ -1,0 +1,37 @@
+##brute:
+TC: O(m*n)
+
+
+##Optimal:
+
+Time complexity: O(log(m*n))
+
+Space complexity: O(1)
+
+
+bool searchMatrix(vector<vector<int>>& mat, int target) {
+        
+    int rows=mat.size(),cols=mat[0].size(),row,col,mid;
+    int low=0,high;
+    high=(rows*cols)-1;
+
+    while(low<=high){
+
+        mid=low+(high-low)/2;
+        
+        row=mid/cols;
+        col=mid%cols;
+
+        if(mat[row][col]==target)
+        return true;
+        else if(mat[row][col]>target){
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+
+    }
+    return false;
+
+}
