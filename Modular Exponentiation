@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+
+int modularExponentiation(int x, int n, int m) {
+	// Write your code here.
+
+	// Take long long int for overflow conditions
+
+	long long int ans=1,xx=x;
+	while(n){
+		if(n%2==1){
+			//odd
+			// 5 cube = 5* 5 square
+
+
+			ans=(ans%m*xx%m)%m;
+			n--;
+
+		}
+		else{
+			// even
+			// 5 power 4 = (5*5) power 2
+
+			n/=2;
+			xx=(xx%m*xx%m)%m;
+		}
+	}
+	return (int)ans%m;
+}
